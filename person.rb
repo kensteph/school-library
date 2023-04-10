@@ -5,4 +5,10 @@ class Person
     @age= age
     @parent_permission = parent_permission
   end
+
+  # Getters
+  attr_reader :id, :name, :age
+  # Setters
+  attr_writer :name, :age
+  
 end
