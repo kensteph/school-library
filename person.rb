@@ -18,4 +18,15 @@ class Person
 
     true
   end
+
+  public
+
+  def can_use_services?
+    return true if of_age? || @parent_permission
+
+    false
+  end
 end
+
+person = Person.new(12)
+puts person.can_use_services?
