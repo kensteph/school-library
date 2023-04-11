@@ -1,4 +1,6 @@
-class Person
+require_relative './nameable.rb'
+
+class Person< Nameable
   # Getters
   attr_accessor :name, :age
   # Setters
