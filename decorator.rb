@@ -1,7 +1,8 @@
-require_relative './nameable.rb'
+require_relative './nameable'
 
-class Decorator
-  def initialize (nameable )
+class Decorator < Nameable
+  def initialize(nameable)
+    super()
     @nameable = nameable
   end
 
@@ -10,14 +11,14 @@ class Decorator
   end
 end
 
-class CapitalizeDecorator<Decorator
+class CapitalizeDecorator < Decorator
   def correct_name
     @nameable.correct_name.capitalize
   end
 end
 
-class TrimmerDecorator<Decorator
+class TrimmerDecorator < Decorator
   def correct_name
-    @nameable.correct_name
+    @nameable.correct_name[0, 9] if @nameable.correct_name.length > 10
   end
 end
