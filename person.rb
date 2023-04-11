@@ -26,6 +26,6 @@ class Person< Nameable
   end
 
   def correct_name
-    @name
+    @nameable.correct_name[0,9]
   end
 end
