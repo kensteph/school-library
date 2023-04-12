@@ -14,4 +14,4 @@ puts student1.inspect
 # Set a new class for student 1
 student1.classroom = classroom3
 puts student1.inspect
-# puts classroom1.inspect
+puts classroom1.inspect
