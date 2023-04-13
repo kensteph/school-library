@@ -12,6 +12,14 @@ class App
       @books_list.each {|index,value| puts "#{index}-#{value}"}
     end
   end
+
+  def list_all_people
+    if @books_list.length == 0
+      puts 'The list is empty.'
+    else
+      @people_list.each {|index,value| puts "#{index}-#{value}"}
+    end
+  end
 end
 
 app = App.new
