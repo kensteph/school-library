@@ -1,5 +1,6 @@
 require_relative './teacher.rb'
 require_relative './student.rb'
+require_relative './book.rb'
 class App
   def initialize
     @books_list = []
@@ -54,13 +55,22 @@ class App
     @people_list << new_student
   end
 
+  def create_book
+    puts 'Please provide these information :'
+    print 'Title:'
+    title = gets.chomp
+    print 'Author :'
+    author = gets.chomp
+    new_book = Book.new(title,author)
+    @books_list << new_book
+  end
+
 
 end
 
 
 app = App.new
+app.create_book
+app.create_book
 app.list_all_books
-app.create_teacher
-app.create_teacher
-app.create_student
 puts app.inspect
