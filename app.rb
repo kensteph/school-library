@@ -22,16 +22,23 @@ class App
       puts 'The list is empty.'
     else
       @people_list.each_with_index do |value,index| 
-        type = 'Student'
-        if value.specialization 
-          type = 'Teacher'
-        end
-          puts "#{index})  [#{type}] Name: #{value.name}, ID: #{value.id}, Age: #{value.age}"
+          puts "#{index})  [#{value.class}] Name: #{value.name}, ID: #{value.id}, Age: #{value.age}"
         end
     end
   end
 
+  def list_all_rental(id)
+    if @rentals_list.length == 0
+      puts 'The list is empty.'
+    else
+      @rentals_list.each_with_index do |value,index| 
+        puts "Date: #{value.date}, Book: #{value.book.title} by #{value.book.author}" if value.person.id ==id
+      end
+    end
+  end
+
   def create_teacher
+    puts"\n"
     puts 'Please provide these information :'
     print 'Age :'
     age = gets.chomp
@@ -43,9 +50,11 @@ class App
     new_teacher = Teacher.new(age,specialization,name)
     @people_list << new_teacher
     puts 'Teacher created successfully'
+    puts"\n"
   end
 
   def create_student
+    puts"\n"
     puts 'Please provide these information :'
     print 'Classroom (number) :'
     classroom = gets.chomp
@@ -62,9 +71,11 @@ class App
     new_student = Student.new(age,name,classroom,parent_permission:permission)
     @people_list << new_student
     puts 'Student created successfully'
+    puts"\n"
   end
 
   def create_book
+    puts"\n"
     puts 'Please provide these information :'
     print 'Title:'
     title = gets.chomp
@@ -73,9 +84,11 @@ class App
     new_book = Book.new(title,author)
     @books_list << new_book
     puts 'Book created successfully'
+    puts"\n"
   end
 
   def create_rental
+    puts"\n"
     puts 'Select a book from the following list by number'
     list_all_books
     book_position = gets.chomp.to_i
@@ -86,6 +99,8 @@ class App
     date = gets.chomp
     new_rent = Rental.new(date,@books_list[book_position],@people_list[person_position])
     @rentals_list << new_rent
+    puts 'Rental created successfully'
+    puts"\n"
   end
 
 
@@ -99,7 +114,8 @@ app = App.new
 app.create_student
 app.create_teacher
 app.list_all_people
-# app.create_book
-# app.create_book
-# app.create_rental
-# puts app.inspect
+app.create_book
+app.create_book
+app.create_rental
+app.create_rental
+app.list_all_rental(1)
