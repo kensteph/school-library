@@ -30,7 +30,7 @@ def main
     when "6"
       app.list_all_rental
     when "7"
-      exit_app
+      app.exit_app
     else
       puts "**** Welcome to School Library App ****!"
     end

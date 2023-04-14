@@ -127,4 +127,9 @@ class App
     puts 'Rental created successfully'
     puts"\n"
   end
+
+  def exit_app
+    puts "Thank you for using this app!"
+    exit
+  end
 end
