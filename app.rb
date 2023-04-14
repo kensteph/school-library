@@ -11,29 +11,43 @@ class App
 
   def list_all_books
     if @books_list.length == 0
+      puts"\n"
       puts 'The library is empty.'
+      puts"\n"
     else
+      puts"\n"
       @books_list.each_with_index {|value,index| puts "#{index})  Title: #{value.title}, Author: #{value.author}"}
+      puts"\n"
     end
   end
 
   def list_all_people
     if @people_list.length == 0
+      puts"\n"
       puts 'The list is empty.'
+      puts"\n"
     else
+      puts"\n"
       @people_list.each_with_index do |value,index| 
           puts "#{index})  [#{value.class}] Name: #{value.name}, ID: #{value.id}, Age: #{value.age}"
-        end
+      end
+      puts"\n"
     end
   end
 
-  def list_all_rental(id)
+  def list_all_rental()
     if @rentals_list.length == 0
+      puts"\n"
       puts 'The list is empty.'
+      puts"\n"
     else
-      @rentals_list.each_with_index do |value,index| 
-        puts "Date: #{value.date}, Book: #{value.book.title} by #{value.book.author}" if value.person.id ==id
+      puts"\n"
+      print 'ID of the person : '
+      person_id = gets.chomp.to_i
+      @rentals_list.each_with_index do |value,index|
+        puts "Date: #{value.date}, Book: #{value.book.title} by #{value.book.author}" if value.person.id == person_id
       end
+      puts"\n"
     end
   end
 
@@ -74,6 +88,17 @@ class App
     puts"\n"
   end
 
+  def create_person
+    puts"\n"
+    print 'Do you want to create a Student (1) or a Teacher (2) [Input the number]'
+    choice = gets.chomp
+    if choice == '1' then
+      create_student
+    else
+      create_teacher
+    end
+  end
+
   def create_book
     puts"\n"
     puts 'Please provide these information :'
@@ -102,20 +127,4 @@ class App
     puts 'Rental created successfully'
     puts"\n"
   end
-
-
 end
-
-
-app = App.new
-# app.create_book
-# app.create_book
-# app.list_all_books
-app.create_student
-app.create_teacher
-app.list_all_people
-app.create_book
-app.create_book
-app.create_rental
-app.create_rental
-app.list_all_rental(1)
