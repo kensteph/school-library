@@ -26,6 +26,7 @@ class App
 
   def list_all_people
     puts "\n"
+    preseve_people
     if @people_list.empty?
       puts 'The list is empty.'
     else
