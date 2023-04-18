@@ -9,7 +9,7 @@ class App
   def initialize
     @books_list = load_books || []
     @people_list = load_people || []
-    @rentals_list = []
+    @rentals_list = load_rentals || []
   end
 
   def list_all_books

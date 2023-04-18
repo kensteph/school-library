@@ -34,15 +34,14 @@ module Database
     rental_ojects = []
 
     @rentals_list.each do |rental|
+      book = { title: rental.book.title, author: rental.book.author }
       if rental.person.instance_of?(::Student)
         student = { age: rental.person.age, classroom: rental.person.classroom, name: rental.person.name,
-                    id: rental.person.id }
-        book = { title: rental.book.title, author: rental.book.author }
+                    id: rental.person.id,type: 'Student' }
         rental_ojects << { date: rental.date, book: book, person: student }
       else
         teacher = { age: rental.person.age, specialization: rental.person.specialization, name: rental.person.name,
-                    id: rental.person.id }
-        book = { title: rental.book.title, author: rental.book.author }
+                    id: rental.person.id,type: 'Teacher' }
         rental_ojects << { date: rental.date, book: book, person: teacher }
       end
     end
@@ -76,4 +75,27 @@ module Database
     end
     people
   end
+
+  def load_rentals
+    rentals = []
+    if File.exist?('rentals.json') && !File.empty?('rentals.json')
+      data = JSON.parse(File.read('rentals.json'))
+      data.each do |rental|
+        book = Book.new(rental['book']['title'], rental['book']['author'])
+        if rental['person']['type'] == "Student"
+          student = Student.new(rental['person']['age'],rental['person']['classrom'],rental['person']['name'] )
+          student.id = rental['person']['id']
+          rentals<< Rental.new(rental['date'],book,student) 
+        else
+          teacher = Teacher.new(rental['person']['age'],rental['person']['specialization'],rental['person']['name'] )
+          teacher.id = rental['person']['id']
+          rentals<< Rental.new(rental['date'],book,teacher)
+        end
+      end
+    end
+    rentals
+  end
+
+
+
 end
