@@ -28,6 +28,8 @@ def main
     display_menu
     choice = gets.chomp.to_i
     if choice == 7
+      # Preserve the data
+      app.preseve_data
       puts 'Thank you for using this app!'
       exit
     end

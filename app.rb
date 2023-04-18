@@ -2,9 +2,12 @@ require_relative './teacher'
 require_relative './student'
 require_relative './book'
 require_relative './rental'
+require'json'
+require_relative './database.rb'
 class App
+  include Database
   def initialize
-    @books_list = []
+    @books_list = query_books || []
     @people_list = []
     @rentals_list = []
   end
